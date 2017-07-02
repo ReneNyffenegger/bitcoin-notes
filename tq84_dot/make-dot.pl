@@ -18,6 +18,8 @@ TQ84_DOT::class_end();
 
 TQ84_DOT::class("CWalletTx");
 TQ84_DOT::file("wallet/wallet.h");
+TQ84_DOT::comment("Transaction with info for user.");
+TQ84_DOT::attribute("strFromAccount");
 TQ84_DOT::class_end();
 
 TQ84_DOT::class("CDB");
@@ -30,7 +32,10 @@ TQ84_DOT::class_end();
 
 TQ84_DOT::class("CWalletDB");
 TQ84_DOT::file("wallet/walletdb.h");
+TQ84_DOT::comment("Access to the wallet database.");
+TQ84_DOT::comment("Represents a DB-transaction.");
 TQ84_DOT::attribute("batch");
+TQ84_DOT::attribute("mapValue");
 TQ84_DOT::method("LoadWallet");
 TQ84_DOT::class_end();
 
@@ -45,6 +50,7 @@ TQ84_DOT::class_end();
 
 TQ84_DOT::class("CCryptoKeyStore");
 TQ84_DOT::file("wallet/crypter.h");
+TQ84_DOT::method("GetKey");
 TQ84_DOT::class_end();
 
 
@@ -69,6 +75,7 @@ TQ84_DOT::class_end();
 
 TQ84_DOT::class("CDBEnv");
 TQ84_DOT::file("wallet/db.h");
+TQ84_DOT::attribute("dbenv", {comment=> 'Pointer to BerkleyDB DbEnv'});
 TQ84_DOT::class_end();
 
 

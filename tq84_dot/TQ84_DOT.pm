@@ -57,17 +57,31 @@ DOT
 
 sub attribute { #_{
   my $attribute_name = shift;
-print $dot <<DOT 
-      <tr><td align="left" port="$attribute_name"><font face="Helvetica">$attribute_name</font></td></tr>
-DOT
+
+  my $opts = shift;
+# my %opts;
+# if (@_) {
+#   
+#   my $o = shift;
+#   %opts = %$o;
+# }
+
+   print $dot "<tr><td align=\"left\" port=\"$attribute_name\"><font face=\"Helvetica\">$attribute_name</font>";
+   method_or_attribute_comment($opts);
+
+
+   print $dot "</td></tr>\n";
 
 } #_}
 
 sub method { #_{
   my $method_name = shift;
-print $dot <<DOT 
-      <tr><td align="left"><font face="Helvetica" color="blue">$method_name()</font></td></tr>
-DOT
+  my $opts = shift;
+
+print $dot "<tr><td align=\"left\"><font face=\"Helvetica\" color=\"blue\">$method_name()</font>";
+
+  method_or_attribute_comment($opts);
+  print $dot "</td></tr>\n";
 
 } #_}
 
@@ -78,6 +92,15 @@ print $dot <<DOT
 DOT
 
 } #_}
+
+sub method_or_attribute_comment {
+
+   my $opts = shift;
+   
+   if ($opts->{comment}) {
+      print $dot "<br align=\"left\"/><font color=\"green\" point-size=\"8\">$opts->{comment}<br align=\"left\"/></font>";
+   }
+}
 
 sub derives_from { #_{
 
