@@ -14,6 +14,7 @@ sub start { #_{
   
     fontname="Helvetica";
     node [shape=plaintext];
+    edge [arrowhead=normal];
 
     label="Bitcoin-Core: Wallet related classes"; labelloc=t;
   
