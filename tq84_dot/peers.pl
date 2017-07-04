@@ -4,7 +4,7 @@ use strict;
 
 use TQ84_DOT;
 
-TQ84_DOT::start("Peers");
+TQ84_DOT::start("peers", "Bitcoin core: Peer related classes");
 
 TQ84_DOT::class("CNetAddr");
 TQ84_DOT::file("netaddress.h");
