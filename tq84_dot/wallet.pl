@@ -4,7 +4,7 @@ use strict;
 
 use TQ84_DOT;
 
-TQ84_DOT::start("Wallet");
+TQ84_DOT::start("wallet", "Bitcoin core: Wallet related classes");
 
 TQ84_DOT::class("CAccountingEntry");
 TQ84_DOT::file("wallet/wallet.h");
