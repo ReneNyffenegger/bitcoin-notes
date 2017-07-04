@@ -34,16 +34,23 @@ sub open { #_{
   my $out_type = 'pdf';
 
   print system "dot $filename_without_suffix.dot -T$out_type -o$filename_without_suffix.$out_type\n";
-  system "okular $filename_without_suffix.$out_type";
+  if ($^O eq 'MSWin32') {
+    system "$filename_without_suffix.$out_type";
+  }
+  else {
+    system "okular $filename_without_suffix.$out_type";
+  }
 } #_}
 
 sub class { #_{
   my $class_name = shift;
+ (my $class_name_clean = $class_name) =~ tr/a<>/a__/;
+  my $class_name_html = html_decode($class_name);
 print $dot <<DOT 
-  $class_name [
+  $class_name_clean [
     label=<
       <table border="1" cellborder="0">
-        <tr><td align="left"><font face="Helvetica"><b>$class_name</b></font></td></tr>
+        <tr><td align="left"><font face="Helvetica"><b>$class_name_html</b></font></td></tr>
 DOT
 
 } #_}
@@ -94,21 +101,24 @@ DOT
 
 } #_}
 
-sub method_or_attribute_comment {
+sub method_or_attribute_comment { #_{
 
    my $opts = shift;
    
    if ($opts->{comment}) {
       print $dot "<br align=\"left\"/><font color=\"green\" point-size=\"8\">$opts->{comment}<br align=\"left\"/></font>";
    }
-}
+} #_}
 
 sub derives_from { #_{
 
   my $derived_class = shift;
   my $base_class    = shift;
 
-  print $dot "  $base_class -> $derived_class [arrowhead=invempty arrowtail=none dir=both];\n";
+ (my $derived_clean = $derived_class) =~ tr/a<>/a__/;
+ (my $base_clean    = $base_class  ) =~ tr/a<>/a__/;
+
+  print $dot "  $base_clean -> $derived_clean [arrowhead=invempty arrowtail=none dir=both];\n";
 
 } #_}
 
@@ -153,4 +163,14 @@ print $dot <<DOT
 DOT
 
 } #_}
+
+sub html_decode { #_{
+  my $text = shift;
+  $text =~ s/&/&amp;/g;
+  $text =~ s/>/&gt;/g;
+  $text =~ s/</&lt;/g;
+
+  return $text;
+} #_}
+
 1;

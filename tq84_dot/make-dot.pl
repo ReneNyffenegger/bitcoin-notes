@@ -70,6 +70,7 @@ TQ84_DOT::class_end();
 
 TQ84_DOT::class("CWalletDBWrapper");
 TQ84_DOT::file("wallet/db.h");
+TQ84_DOT::comment("Represents a wallet database");
 TQ84_DOT::attribute("env");
 TQ84_DOT::class_end();
 
