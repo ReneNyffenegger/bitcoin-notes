@@ -3,7 +3,7 @@ use warnings;
 use strict;
 
 use TQ84_DOT;
-TQ84_DOT::start("Messages");
+TQ84_DOT::start("messages", "Bitcoin core: message related classes");
 
 TQ84_DOT::class("CNode");
 TQ84_DOT::file("net.h");
