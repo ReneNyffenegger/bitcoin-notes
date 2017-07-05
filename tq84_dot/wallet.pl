@@ -35,7 +35,7 @@ TQ84_DOT::file("wallet/walletdb.h");
 TQ84_DOT::comment("Access to the wallet database.");
 TQ84_DOT::comment("Represents a DB-transaction.");
 TQ84_DOT::attribute("batch");
-TQ84_DOT::attribute("mapValue");
+TQ84_DOT::attribute("m_dbw");
 TQ84_DOT::method("LoadWallet");
 TQ84_DOT::class_end();
 
@@ -92,7 +92,8 @@ TQ84_DOT::link('CWallet:dbw'                , 'CWalletDBWrapper');
 TQ84_DOT::link('CWallet:pwalletdbEncryption', 'CWalletDB'       , {dir=>'back'});
 TQ84_DOT::link('CWalletDBWrapper:env'       , 'CDBEnv');
 TQ84_DOT::link('CDB:env'                    , 'CDBEnv');
-TQ84_DOT::link('CWalletDB:batch'            , 'CDB'             , {dir=>'back'});
+TQ84_DOT::link('CWalletDB:batch'            , 'CDB'             , );
+TQ84_DOT::link('CWalletDB:m_dbw'            , 'CWalletDBWrapper', );
 TQ84_DOT::link('CWallet:laccentries'        , 'CAccountingEntry', {head=>'crow'});
 TQ84_DOT::link('CWallet:mapWallet'          , 'CWalletTx'       , {head=>'crow'});
 
@@ -101,49 +102,3 @@ TQ84_DOT::same_rank(qw(CDB CWallet CWalletDB CWalletDBWrapper CDBEnv));
 
 TQ84_DOT::end();
 TQ84_DOT::open();
-
-
-# my $filename_without_suffix = 'Wallet';
-# 
-# open (my $din, '<', "$filename_without_suffix.din") or die;
-# open (my $dot, '>', "$filename_without_suffix.dot") or die;
-
-# print $dot 'digraph G {
-# 
-#   fontname="Helvetica";
-#   node [shape=plaintext];
-# 
-# ';
-# 
-# my $in_class = 0;
-# while (my $in = <$din>) {
-# 
-#   if ($in =~ /^\s*$/) { #_{
-# 
-#      if ($in_class) {
-#         $in_class = 0;
-# 
-# print $dot"    >
-#   ];
-# ";
-#      }
-# 
-#      next;
-#   } #_}
-# 
-#   if ($in =~ /^(\w+)/) { #_{ new class
-#      my $classname = $1;
-#      $in_class = 1;
-# 
-# print $dot "  $classname [
-#     label=<
-#       <table border="1" cellcorder="0"
-#   ];
-# ";
-# 
-# 
-#   } #_}
-# }
-# 
-# 
-# print $dot "}\n";
