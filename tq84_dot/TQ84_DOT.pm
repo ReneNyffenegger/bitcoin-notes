@@ -38,7 +38,6 @@ sub end { #_{
 
 } #_}
 
-
 sub run_dot { #_{
 
   my $out_type = shift;
@@ -50,11 +49,13 @@ sub open { #_{
 
 # print system "dot $dot_file_path -T$out_type -o$out_path$filename_without_suffix.$out_type\n";
 
+  my $pdf_path = "$out_path$filename_without_suffix.pdf"; 
   if ($^O eq 'MSWin32') {
-    system "$out_path$filename_without_suffix.pdf";
+    $pdf_path =~ s!/!\\!g;
+    system $pdf_path;
   }
   else {
-    system "okular $out_path$filename_without_suffix.pdf";
+    system "okular $pdf_path";
   }
 } #_}
 
