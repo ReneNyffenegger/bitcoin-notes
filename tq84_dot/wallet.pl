@@ -34,9 +34,10 @@ TQ84_DOT::class("CWalletDB");
 TQ84_DOT::file("wallet/walletdb.h");
 TQ84_DOT::comment("Access to the wallet database.");
 TQ84_DOT::comment("Represents a DB-transaction.");
-TQ84_DOT::attribute("batch");
-TQ84_DOT::attribute("m_dbw");
+TQ84_DOT::attribute("batch", {type=>"CDB"});
+TQ84_DOT::attribute("m_dbw", {type=>"CWalletDBWrapper"});
 TQ84_DOT::method("LoadWallet");
+TQ84_DOT::method("WriteIC", {comment=>"Writes a Key/Value pair to the wallet"});
 TQ84_DOT::class_end();
 
 

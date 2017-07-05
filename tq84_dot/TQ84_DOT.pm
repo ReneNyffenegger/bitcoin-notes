@@ -84,18 +84,16 @@ sub attribute { #_{
   my $attribute_name = shift;
 
   my $opts = shift;
-# my %opts;
-# if (@_) {
-#   
-#   my $o = shift;
-#   %opts = %$o;
-# }
-
-   print $dot_fh "<tr><td align=\"left\" port=\"$attribute_name\"><font face=\"Helvetica\">$attribute_name</font>";
-   method_or_attribute_comment($opts);
 
 
-   print $dot_fh "</td></tr>\n";
+  print $dot_fh "<tr><td align=\"left\" port=\"$attribute_name\"><font face=\"Helvetica\">$attribute_name</font>";
+  if (exists $opts->{type}) {
+    print $dot_fh "<font color=\"grey\">: $opts->{type}</font>";
+  }
+  method_or_attribute_comment($opts);
+
+
+  print $dot_fh "</td></tr>\n";
 
 } #_}
 
