@@ -25,10 +25,14 @@ TQ84_DOT::class_end();
 TQ84_DOT::class("CDB");
 TQ84_DOT::file("wallet/db.h");
 TQ84_DOT::comment("Interface to Berkeley DB");
+TQ84_DOT::attribute("pdb", {type=>'Db'});
 TQ84_DOT::method("Read");
 TQ84_DOT::method("Write");
-TQ84_DOT::attribute("env");
+TQ84_DOT::method("TxnBegin/Commit/Abort");
+TQ84_DOT::method("Recover");
+TQ84_DOT::attribute("env", {type=>'CDBEnv'});
 TQ84_DOT::class_end();
+
 
 TQ84_DOT::class("CWalletDB");
 TQ84_DOT::file("wallet/walletdb.h");
@@ -38,6 +42,7 @@ TQ84_DOT::attribute("batch", {type=>"CDB"});
 TQ84_DOT::attribute("m_dbw", {type=>"CWalletDBWrapper"});
 TQ84_DOT::method("LoadWallet");
 TQ84_DOT::method("WriteIC", {comment=>"Writes a Key/Value pair to the wallet"});
+TQ84_DOT::method("Recover");
 TQ84_DOT::class_end();
 
 
@@ -77,9 +82,21 @@ TQ84_DOT::class_end();
 
 TQ84_DOT::class("CDBEnv");
 TQ84_DOT::file("wallet/db.h");
-TQ84_DOT::attribute("dbenv", {comment=> 'Pointer to BerkleyDB DbEnv'});
+TQ84_DOT::attribute("dbenv", {comment=> 'Pointer to BerkleyDB DbEnv', type=>'DbEnv'});
+TQ84_DOT::method("Salvage");
 TQ84_DOT::class_end();
 
+TQ84_DOT::link("CDBEnv:dbenv", "DbEnv");
+
+TQ84_DOT::class("DbEnv");
+TQ84_DOT::file("/usr/local/BerkeleyDB.4.8/include/db_cxx.h");
+TQ84_DOT::comment("Berkeley DB environment.");
+TQ84_DOT::class_end();
+
+TQ84_DOT::class("Db");
+TQ84_DOT::file("/usr/local/BerkeleyDB.4.8/include/db_cxx.h");
+TQ84_DOT::comment("Represents a database table (key/value pairs)");
+TQ84_DOT::class_end();
 
 TQ84_DOT::derives_from('CWalletTx', 'CMerkleTx');
 TQ84_DOT::derives_from('CWallet', 'CCryptoKeyStore');
@@ -93,6 +110,7 @@ TQ84_DOT::link('CWallet:dbw'                , 'CWalletDBWrapper');
 TQ84_DOT::link('CWallet:pwalletdbEncryption', 'CWalletDB'       , {dir=>'back'});
 TQ84_DOT::link('CWalletDBWrapper:env'       , 'CDBEnv');
 TQ84_DOT::link('CDB:env'                    , 'CDBEnv');
+TQ84_DOT::link('CDB:pdb'                    , 'Db');
 TQ84_DOT::link('CWalletDB:batch'            , 'CDB'             , );
 TQ84_DOT::link('CWalletDB:m_dbw'            , 'CWalletDBWrapper', );
 TQ84_DOT::link('CWallet:laccentries'        , 'CAccountingEntry', {head=>'crow'});
