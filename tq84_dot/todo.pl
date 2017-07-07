@@ -27,6 +27,8 @@ TQ84_DOT::method("ReadBlockFileInfo" , {comment=>'Read a specific CBlockFileInfo
 TQ84_DOT::method("Read/WriteFlag"    , {comment=>'...'});
 TQ84_DOT::class_end();
 
+TQ84_DOT::global_var("pblocktreedb", "CBlockTreeDB");
+
 TQ84_DOT::class("CBlockIndex");
 TQ84_DOT::file("chain.h");
 TQ84_DOT::comment("A Bitcoin block?");

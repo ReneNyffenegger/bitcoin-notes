@@ -137,6 +137,15 @@ sub derives_from { #_{
 
 } #_}
 
+sub global_var { #_{
+  
+  my $name       = shift;
+  my $class_name = shift;
+
+  print $dot_fh "$name -> $class_name [arrowhead=none];\n";
+
+} #_}
+
 sub link { #_{
   my $from = shift;
   my $to   = shift;
