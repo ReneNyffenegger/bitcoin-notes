@@ -24,6 +24,7 @@ TQ84_DOT::comment("Access to the block database (DATADIR/blocks/index/)");
 TQ84_DOT::method("LoadBlockIndexGuts", {comment=>'Load mapBlockIndex'});
 TQ84_DOT::method("ReadLastBlockFile" , {comment=>'How many block info files are there?'});
 TQ84_DOT::method("ReadBlockFileInfo" , {comment=>'Read a specific CBlockFileInfo'});
+TQ84_DOT::method("Read/WriteFlag"    , {comment=>'...'});
 TQ84_DOT::class_end();
 
 TQ84_DOT::class("CBlockIndex");
