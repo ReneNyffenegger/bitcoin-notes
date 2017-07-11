@@ -10,4 +10,6 @@ my $class_diagram = GraphViz::ClassDiagram->new("trx.pdf");
 
 $class_diagram->title("Bitcoin TRX classes");
 
+my $CChain = $class_diagram -> class('CChain');
+
 $class_diagram->create();
