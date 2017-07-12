@@ -42,14 +42,25 @@ my $CBlockIndex      = $class_diagram -> class('CBlockIndex'     ); #_{
    $CBlockIndex->comment('Apparently keeps track of a block');
 
    $CBlockIndex->attribute('phashBlock', {comment=>'hash of block'});
+
+   my $CBlockIndex_pprev =
    $CBlockIndex->attribute('pprev'     , {comment=>'hash of previous block'});
+
+   my $CBlockIndex_pskip =
    $CBlockIndex->attribute('pskip');
+
+   $class_diagram->link($CBlockIndex_pprev, $CBlockIndex);
+   $class_diagram->link($CBlockIndex_pskip, $CBlockIndex);
 
 #_}
 my $CDBBatch         = $class_diagram -> class('CDBBatch'        ); #_{
    $CDBBatch->comment('Batch of changes queued to be written to a CDBWrapper');
    $CDBBatch->file('dbwrapper.h');
+
+   my $CDBBatch_parent =
    $CDBBatch->attribute('parent');
+
+   $class_diagram->link($CDBBatch_parent, $CDBWrapper);
 #_}
 my $CCoinsView       = $class_diagram -> class('CCoinsView'      ); #_{
    $CCoinsView->file('coins.h');
@@ -78,7 +89,11 @@ my $CCoinsViewDB     = $class_diagram -> class('CCoinsViewDB'    ); #_{
    $CCoinsViewDB->file('txdb.h');
    $CCoinsViewDB->comment("CCoinsView backed by the coin database (chainstate/)");
    $CCoinsViewDB->comment("Compare CCoinsViewBacked.");
+
+   my $CCoinsViewDB_db =
    $CCoinsViewDB->attribute("db");
+
+   $class_diagram->link($CCoinsViewDB_db, $CDBWrapper);
 #_}
 my $CDiskBlockIndex  = $class_diagram -> class('CDiskBlockIndex' ); #_{
    $CDiskBlockIndex->file('chain.h');

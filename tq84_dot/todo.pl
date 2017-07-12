@@ -12,22 +12,10 @@ TQ84_DOT::global_var("pblocktreedb", "CBlockTreeDB");
 
 
 
-TQ84_DOT::link("CBlockIndex:pprev", "CBlockIndex");
-TQ84_DOT::link("CBlockIndex:pskip", "CBlockIndex");
-TQ84_DOT::link("CDBBatch:parent", "CDBWrapper");
-
 
 
 TQ84_DOT::derives_from("CCoinsViewBacked", "CCoinsView");
-
-
 TQ84_DOT::derives_from("CCoinsViewCache", "CCoinsViewBacked");
-
-
-
-TQ84_DOT::link("CDBIterator:parent", "CDBWrapper");
-
-
 TQ84_DOT::derives_from("CCoinsViewDB", "CCoinsView");
 
 
