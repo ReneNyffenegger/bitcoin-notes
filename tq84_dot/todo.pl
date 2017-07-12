@@ -14,12 +14,6 @@ TQ84_DOT::global_var("pblocktreedb", "CBlockTreeDB");
 
 
 
-TQ84_DOT::derives_from("CCoinsViewBacked", "CCoinsView");
-TQ84_DOT::derives_from("CCoinsViewCache", "CCoinsViewBacked");
-TQ84_DOT::derives_from("CCoinsViewDB", "CCoinsView");
-
-
-
 TQ84_DOT::derives_from("CBlockTreeDB", "CDBWrapper");
 TQ84_DOT::derives_from("CDiskBlockIndex", "CBlockIndex");
 

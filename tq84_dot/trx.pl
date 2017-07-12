@@ -103,5 +103,11 @@ my $CDiskBlockPos    = $class_diagram -> class('CDiskBlockPos'   ); #_{
    $CDiskBlockPos->file('chain.h');  
 #_}
    
+   $class_diagram->inheritance($CCoinsView      , $CCoinsViewBacked);
+   $class_diagram->inheritance($CCoinsViewBacked, $CCoinsViewCache );
+   $class_diagram->inheritance($CCoinsView      , $CCoinsViewDB    );
+
+   $class_diagram->inheritance($CDBWrapper      , $CBlockTreeDB    );
+   $class_diagram->inheritance($CBlockIndex     , $CDiskBlockIndex );
 
 $class_diagram->create();
