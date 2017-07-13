@@ -110,4 +110,6 @@ my $CDiskBlockPos    = $class_diagram -> class('CDiskBlockPos'   ); #_{
    $class_diagram->inheritance($CDBWrapper      , $CBlockTreeDB    );
    $class_diagram->inheritance($CBlockIndex     , $CDiskBlockIndex );
 
+   $class_diagram->same_rank($CDBWrapper, $CDBBatch, $CCoinsViewDB, $CDBIterator);
+
 $class_diagram->create();
