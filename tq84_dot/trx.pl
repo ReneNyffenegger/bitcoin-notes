@@ -4,9 +4,9 @@ use strict;
 
 use lib '/home/rene/github/lib/perl-GraphViz-ClassDiagram/lib/';
 
-use GraphViz::ClassDiagram;
+use GraphViz::Diagram::ClassDiagram;
 
-my $class_diagram = GraphViz::ClassDiagram->new("trx.pdf");
+my $class_diagram = GraphViz::Diagram::ClassDiagram->new("trx.pdf");
 
 $class_diagram->title("Bitcoin TRX classes");
 
