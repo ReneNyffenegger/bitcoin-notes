@@ -2,7 +2,7 @@
 use warnings;
 use strict;
 
-use lib '/home/rene/github/lib/perl-GraphViz-ClassDiagram/lib/';
+use lib '/home/rene/github/lib/perl-GraphViz-Diagram-ClassDiagram/lib/';
 
 use GraphViz::Diagram::ClassDiagram;
 
